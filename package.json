@@ -1,0 +1,12 @@
+{
+  "name": "interview-assistant",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Voice-enabled interview assistant with Netlify deployment",
+  "dependencies": {
+    "parse-multipart-data": "^1.5.0",
+    "pdf-parse": "^1.1.1",
+    "openai": "^4.28.0",
+    "@anthropic-ai/sdk": "^0.17.1"
+  }
+}
