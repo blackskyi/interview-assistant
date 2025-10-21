@@ -1,10 +1,14 @@
-// Shared session storage
+// Shared session storage (Note: this won't persist across function invocations in serverless)
 const sessions = new Map();
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
       body: JSON.stringify({ error: 'Method not allowed' })
     };
   }
@@ -70,5 +74,3 @@ export const handler = async (event) => {
     };
   }
 };
-
-export { sessions };

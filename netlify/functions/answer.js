@@ -1,4 +1,4 @@
-import Anthropic from '@anthropic-ai/sdk';
+const Anthropic = require('@anthropic-ai/sdk');
 
 const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY
@@ -7,7 +7,7 @@ const anthropic = new Anthropic({
 // Shared session storage
 const sessions = new Map();
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -165,5 +165,3 @@ function detectQuestionType(question) {
 
   return 'general';
 }
-
-export { sessions };

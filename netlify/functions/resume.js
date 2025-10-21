@@ -1,10 +1,10 @@
-import multipart from 'parse-multipart-data';
-import pdf from 'pdf-parse';
+const multipart = require('parse-multipart-data');
+const pdf = require('pdf-parse');
 
 // In-memory storage (in production, use a database or cloud storage)
 const sessions = new Map();
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   // Only allow POST
   if (event.httpMethod !== 'POST') {
     return {
@@ -139,5 +139,3 @@ function extractEducation(text) {
 
   return education;
 }
-
-export { sessions };

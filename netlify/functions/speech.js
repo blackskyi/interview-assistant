@@ -1,14 +1,15 @@
-import multipart from 'parse-multipart-data';
-import OpenAI from 'openai';
-import { writeFile, unlink } from 'fs/promises';
-import { join } from 'path';
-import { tmpdir } from 'os';
+const multipart = require('parse-multipart-data');
+const OpenAI = require('openai');
+const { writeFile, unlink } = require('fs/promises');
+const { join } = require('path');
+const { tmpdir } = require('os');
+const fs = require('fs');
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-export const handler = async (event) => {
+exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
@@ -45,7 +46,7 @@ export const handler = async (event) => {
 
     // Transcribe using Whisper
     const transcription = await openai.audio.transcriptions.create({
-      file: await fetch(`file://${tempFilePath}`).then(r => r.blob()),
+      file: fs.createReadStream(tempFilePath),
       model: 'whisper-1',
       language: 'en',
       response_format: 'json'
