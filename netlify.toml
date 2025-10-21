@@ -10,8 +10,23 @@
   framework = "#custom"
 
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/api/resume/upload"
+  to = "/.netlify/functions/resume"
+  status = 200
+
+[[redirects]]
+  from = "/api/job/add"
+  to = "/.netlify/functions/job"
+  status = 200
+
+[[redirects]]
+  from = "/api/speech/transcribe"
+  to = "/.netlify/functions/speech"
+  status = 200
+
+[[redirects]]
+  from = "/api/answer/generate"
+  to = "/.netlify/functions/answer"
   status = 200
 
 [functions]
